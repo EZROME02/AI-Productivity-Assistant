@@ -2,12 +2,15 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import {
   Bot,
   CalendarRange,
+  GraduationCap,
   LayoutDashboard,
   Mail,
   Menu,
   NotebookPen,
   Search,
+  Star,
   Sparkles,
+  Trophy,
   X,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
@@ -19,6 +22,9 @@ export const NAV = [
   { to: "/notes", label: "Notes Summarizer", icon: NotebookPen, desc: "Decisions, actions, deadlines" },
   { to: "/planner", label: "Task Planner", icon: CalendarRange, desc: "Prioritised daily & weekly plans" },
   { to: "/research", label: "Research Assistant", icon: Search, desc: "Briefings and recommendations" },
+  { to: "/football", label: "Football News", icon: Trophy, desc: "FIFA, AFCON & global trends" },
+  { to: "/coach", label: "Coach Academy", icon: GraduationCap, desc: "Team growth & sponsorships" },
+  { to: "/player", label: "Player Lab", icon: Star, desc: "Analysis & career pathways" },
   { to: "/chat", label: "AI Chatbot", icon: Bot, desc: "Ask Aria anything about work" },
 ] as const;
 

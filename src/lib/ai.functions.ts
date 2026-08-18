@@ -8,7 +8,7 @@ const MessageSchema = z.object({
 });
 
 const InputSchema = z.object({
-  tool: z.enum(["email", "notes", "planner", "research", "chat"]),
+  tool: z.enum(["email", "notes", "planner", "research", "chat", "football", "coach", "player"]),
   prompt: z.string().min(1).max(20000),
   history: z.array(MessageSchema).max(30).optional(),
 });
