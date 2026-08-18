@@ -58,9 +58,9 @@ function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined })
         </span>
         <span className="leading-tight">
           <span className="block font-display text-sm font-semibold text-sidebar-accent-foreground">
-            AI Productivity
+            AI EZROME
           </span>
-          <span className="block text-xs text-sidebar-foreground/60">Workplace Assistant</span>
+          <span className="block text-xs text-sidebar-foreground/60">ARTIST BOT</span>
         </span>
       </Link>
       <NavLinks onNavigate={onNavigate} />
@@ -87,7 +87,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <span className="grid size-7 place-items-center rounded-lg bg-brand-gradient">
             <Sparkles className="size-3.5 text-primary-foreground" />
           </span>
-          AI Productivity Assistant
+          AI EZROME ARTIST BOT
         </span>
         <button
           aria-label="Toggle navigation"

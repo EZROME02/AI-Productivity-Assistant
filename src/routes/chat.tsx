@@ -13,13 +13,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/chat")({
   head: () => ({
     meta: [
-      { title: "AI Chatbot — Aria | AI Productivity Assistant" },
+      { title: "AI Chatbot — Aria | AI EZROME ARTIST BOT" },
       {
         name: "description",
         content:
           "Chat with Aria, an interactive AI workplace assistant that helps with drafting, planning, analysis and everyday work questions.",
       },
-      { property: "og:title", content: "Aria — AI Workplace Chatbot" },
+      { property: "og:title", content: "AI Chatbot — Aria | AI EZROME ARTIST BOT" },
       {
         property: "og:description",
         content: "An interactive assistant for drafting, planning and workplace problem solving.",

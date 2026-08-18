@@ -6,13 +6,13 @@ import { PageHeader, ToolWorkspace } from "@/components/ToolWorkspace";
 export const Route = createFileRoute("/notes")({
   head: () => ({
     meta: [
-      { title: "Meeting Notes Summarizer | AI Productivity Assistant" },
+      { title: "Meeting Notes Summarizer | AI EZROME ARTIST BOT" },
       {
         name: "description",
         content:
           "Turn long meeting notes or transcripts into a summary with decisions, owners, deadlines and open risks.",
       },
-      { property: "og:title", content: "Meeting Notes Summarizer" },
+      { property: "og:title", content: "Meeting Notes Summarizer | AI EZROME ARTIST BOT" },
       {
         property: "og:description",
         content: "Extract decisions, action items and deadlines from messy meeting notes.",
