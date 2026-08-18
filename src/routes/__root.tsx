@@ -78,17 +78,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AI Productivity Assistant" },
+      { title: "AI EZROME ARTIST BOT" },
       {
         name: "description",
-        content:
-          "AI workplace productivity assistant for emails, meeting summaries, task planning, research and chat.",
+        content: "AI FOOTBALL ASSISTANT",
       },
-      { property: "og:title", content: "AI Productivity Assistant" },
+      { property: "og:title", content: "AI EZROME ARTIST BOT" },
       {
         property: "og:description",
-        content:
-          "AI workplace productivity assistant for emails, meeting summaries, task planning, research and chat.",
+        content: "AI FOOTBALL ASSISTANT",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

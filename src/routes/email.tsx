@@ -15,13 +15,13 @@ import {
 export const Route = createFileRoute("/email")({
   head: () => ({
     meta: [
-      { title: "Smart Email Generator | AI Productivity Assistant" },
+      { title: "Smart Email Generator | AI EZROME ARTIST BOT" },
       {
         name: "description",
         content:
           "Draft professional workplace emails in a formal, friendly, persuasive or apologetic tone, then edit the AI output before sending.",
       },
-      { property: "og:title", content: "Smart Email Generator" },
+      { property: "og:title", content: "Smart Email Generator | AI EZROME ARTIST BOT" },
       {
         property: "og:description",
         content: "Generate tone-matched professional emails in seconds and edit them inline.",

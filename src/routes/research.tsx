@@ -15,13 +15,13 @@ import {
 export const Route = createFileRoute("/research")({
   head: () => ({
     meta: [
-      { title: "AI Research Assistant | AI Productivity Assistant" },
+      { title: "AI Research Assistant | AI EZROME ARTIST BOT" },
       {
         name: "description",
         content:
           "Summarise topics or pasted articles into an executive briefing with insights, recommendations and a confidence-and-gaps section.",
       },
-      { property: "og:title", content: "AI Research Assistant" },
+      { property: "og:title", content: "AI Research Assistant | AI EZROME ARTIST BOT" },
       {
         property: "og:description",
         content: "Executive briefings with insights, recommendations and stated uncertainty.",

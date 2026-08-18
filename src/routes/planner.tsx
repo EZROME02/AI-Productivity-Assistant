@@ -16,13 +16,13 @@ import {
 export const Route = createFileRoute("/planner")({
   head: () => ({
     meta: [
-      { title: "AI Task Planner | AI Productivity Assistant" },
+      { title: "AI Task Planner | AI EZROME ARTIST BOT" },
       {
         name: "description",
         content:
           "Turn a messy task list into a prioritised daily or weekly schedule with deep-work blocks, breaks and buffer time.",
       },
-      { property: "og:title", content: "AI Task Planner & Scheduler" },
+      { property: "og:title", content: "AI Task Planner | AI EZROME ARTIST BOT" },
       {
         property: "og:description",
         content: "Prioritise tasks with the Eisenhower method and get a realistic time-blocked plan.",

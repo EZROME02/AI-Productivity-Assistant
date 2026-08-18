@@ -6,17 +6,15 @@ import { Disclaimer } from "@/components/ToolWorkspace";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AI Productivity Assistant — Automate Workplace Tasks" },
+      { title: "AI EZROME ARTIST BOT" },
       {
         name: "description",
-        content:
-          "A modern AI workplace assistant: generate emails, summarise meeting notes, plan tasks, research topics and chat with an AI coworker.",
+        content: "AI FOOTBALL ASSISTANT",
       },
-      { property: "og:title", content: "AI Productivity Assistant" },
+      { property: "og:title", content: "AI EZROME ARTIST BOT" },
       {
         property: "og:description",
-        content:
-          "Five AI tools for professionals: email drafting, meeting summaries, task planning, research briefings and a workplace chatbot.",
+        content: "AI FOOTBALL ASSISTANT",
       },
     ],
   }),
