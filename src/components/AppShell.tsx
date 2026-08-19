@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   Bot,
+  Briefcase,
   CalendarRange,
   GraduationCap,
   LayoutDashboard,
@@ -18,6 +19,7 @@ import { cn } from "@/lib/utils";
 
 export const NAV = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, desc: "Overview of your AI workspace" },
+  { to: "/portfolio", label: "Portfolio", icon: Briefcase, desc: "EZROME RATED OPINIONZ BOT showcase" },
   { to: "/email", label: "Email Generator", icon: Mail, desc: "Professional emails in any tone" },
   { to: "/notes", label: "Notes Summarizer", icon: NotebookPen, desc: "Decisions, actions, deadlines" },
   { to: "/planner", label: "Task Planner", icon: CalendarRange, desc: "Prioritised daily & weekly plans" },
