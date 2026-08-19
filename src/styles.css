@@ -108,6 +108,13 @@
   --sidebar-accent-foreground: oklch(0.97 0.01 190);
   --sidebar-border: oklch(0.34 0.035 218);
   --sidebar-ring: oklch(0.62 0.13 168);
+  --pitch-black: oklch(0.15 0 0);
+  --chalk-white: oklch(1 0 0);
+  --nations-gold: oklch(0.86 0.18 95);
+  --nations-green: oklch(0.65 0.18 145);
+  --nations-red: oklch(0.55 0.2 30);
+  --nations-blue: oklch(0.55 0.18 250);
+  --font-display-alt: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
 }
 
 .dark {
