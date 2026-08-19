@@ -11,9 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChatRouteImport } from './routes/chat'
+import { Route as CoachRouteImport } from './routes/coach'
 import { Route as EmailRouteImport } from './routes/email'
+import { Route as FootballRouteImport } from './routes/football'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as PlannerRouteImport } from './routes/planner'
+import { Route as PlayerRouteImport } from './routes/player'
 import { Route as ResearchRouteImport } from './routes/research'
 
 const IndexRoute = IndexRouteImport.update({
@@ -26,9 +29,19 @@ const ChatRoute = ChatRouteImport.update({
   path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CoachRoute = CoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmailRoute = EmailRouteImport.update({
   id: '/email',
   path: '/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FootballRoute = FootballRouteImport.update({
+  id: '/football',
+  path: '/football',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NotesRoute = NotesRouteImport.update({
@@ -41,6 +54,11 @@ const PlannerRoute = PlannerRouteImport.update({
   path: '/planner',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlayerRoute = PlayerRouteImport.update({
+  id: '/player',
+  path: '/player',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResearchRoute = ResearchRouteImport.update({
   id: '/research',
   path: '/research',
@@ -50,43 +68,82 @@ const ResearchRoute = ResearchRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chat': typeof ChatRoute
+  '/coach': typeof CoachRoute
   '/email': typeof EmailRoute
+  '/football': typeof FootballRoute
   '/notes': typeof NotesRoute
   '/planner': typeof PlannerRoute
+  '/player': typeof PlayerRoute
   '/research': typeof ResearchRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chat': typeof ChatRoute
+  '/coach': typeof CoachRoute
   '/email': typeof EmailRoute
+  '/football': typeof FootballRoute
   '/notes': typeof NotesRoute
   '/planner': typeof PlannerRoute
+  '/player': typeof PlayerRoute
   '/research': typeof ResearchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/chat': typeof ChatRoute
+  '/coach': typeof CoachRoute
   '/email': typeof EmailRoute
+  '/football': typeof FootballRoute
   '/notes': typeof NotesRoute
   '/planner': typeof PlannerRoute
+  '/player': typeof PlayerRoute
   '/research': typeof ResearchRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chat' | '/email' | '/notes' | '/planner' | '/research'
+  fullPaths:
+    | '/'
+    | '/chat'
+    | '/coach'
+    | '/email'
+    | '/football'
+    | '/notes'
+    | '/planner'
+    | '/player'
+    | '/research'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chat' | '/email' | '/notes' | '/planner' | '/research'
+  to:
+    | '/'
+    | '/chat'
+    | '/coach'
+    | '/email'
+    | '/football'
+    | '/notes'
+    | '/planner'
+    | '/player'
+    | '/research'
   id:
-    '__root__' | '/' | '/chat' | '/email' | '/notes' | '/planner' | '/research'
+    | '__root__'
+    | '/'
+    | '/chat'
+    | '/coach'
+    | '/email'
+    | '/football'
+    | '/notes'
+    | '/planner'
+    | '/player'
+    | '/research'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChatRoute: typeof ChatRoute
+  CoachRoute: typeof CoachRoute
   EmailRoute: typeof EmailRoute
+  FootballRoute: typeof FootballRoute
   NotesRoute: typeof NotesRoute
   PlannerRoute: typeof PlannerRoute
+  PlayerRoute: typeof PlayerRoute
   ResearchRoute: typeof ResearchRoute
 }
 
@@ -106,11 +163,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/coach': {
+      id: '/coach'
+      path: '/coach'
+      fullPath: '/coach'
+      preLoaderRoute: typeof CoachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/email': {
       id: '/email'
       path: '/email'
       fullPath: '/email'
       preLoaderRoute: typeof EmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/football': {
+      id: '/football'
+      path: '/football'
+      fullPath: '/football'
+      preLoaderRoute: typeof FootballRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/notes': {
@@ -127,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlannerRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/player': {
+      id: '/player'
+      path: '/player'
+      fullPath: '/player'
+      preLoaderRoute: typeof PlayerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/research': {
       id: '/research'
       path: '/research'
@@ -140,9 +218,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChatRoute: ChatRoute,
+  CoachRoute: CoachRoute,
   EmailRoute: EmailRoute,
+  FootballRoute: FootballRoute,
   NotesRoute: NotesRoute,
   PlannerRoute: PlannerRoute,
+  PlayerRoute: PlayerRoute,
   ResearchRoute: ResearchRoute,
 }
 export const routeTree = rootRouteImport
