@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   Bot,
+  Briefcase,
   CalendarRange,
   GraduationCap,
   LayoutDashboard,
