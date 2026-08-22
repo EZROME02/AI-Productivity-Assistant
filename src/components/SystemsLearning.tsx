@@ -1,14 +1,17 @@
 /* Software Systems learning module: practical, lawful, defensive, and source-linked. */
 import { useEffect, useMemo, useState } from "react";
 import {
+  Award,
   Binary,
   BookOpen,
   CheckCircle2,
   CircleHelp,
   Database,
+  Download,
   FileKey2,
   GitBranch,
   LockKeyhole,
+  Printer,
   RotateCcw,
   ShieldCheck,
   TriangleAlert,
@@ -137,11 +140,22 @@ const quizQuestions = [
 ];
 
 const PROGRESS_KEY = "systems-learning-progress-v1";
+const LEARNER_NAME_KEY = "systems-learning-learner-name-v1";
+const PASS_SCORE = 4;
 
 type Progress = { completed: number; bestScore: number; lastScore: number | null };
 
 function toEightBit(value: number) {
   return value.toString(2).padStart(8, "0");
+}
+
+function escapeHtml(value: string) {
+  return value.replace(
+    /[&<>\"']/g,
+    (character) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '\"': "&quot;", "'": "&#039;" })[character] ??
+      character,
+  );
 }
 
 export function SystemsLearning() {
@@ -155,6 +169,7 @@ export function SystemsLearning() {
   const [selected, setSelected] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
+  const [learnerName, setLearnerName] = useState("");
   const numeric = Math.min(255, Math.max(0, Number.parseInt(decimal || "0", 10) || 0));
   const bits = toEightBit(numeric).split("");
   const powers = useMemo(() => [128, 64, 32, 16, 8, 4, 2, 1], []);
@@ -165,7 +180,9 @@ export function SystemsLearning() {
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(PROGRESS_KEY);
+      const savedName = window.localStorage.getItem(LEARNER_NAME_KEY);
       if (saved) setProgress(JSON.parse(saved) as Progress);
+      if (savedName) setLearnerName(savedName);
     } catch {
       // Local progress is optional; the learning flow remains usable if storage is unavailable.
     }
@@ -190,7 +207,7 @@ export function SystemsLearning() {
     if (!submitted) return;
     const nextScore = score;
     if (quizIndex === quizQuestions.length - 1) {
-      const finalScore = nextScore;
+      const finalScore = nextScore + (isCorrect ? 1 : 0);
       const nextProgress = {
         completed: Math.min(quizQuestions.length, progress.completed + 1),
         bestScore: Math.max(progress.bestScore, finalScore),
@@ -214,6 +231,42 @@ export function SystemsLearning() {
     setSelected(null);
     setSubmitted(false);
     setScore(0);
+  }
+
+  function updateLearnerName(value: string) {
+    setLearnerName(value);
+    try {
+      window.localStorage.setItem(LEARNER_NAME_KEY, value);
+    } catch {
+      // The credential remains available for the current session if storage is blocked.
+    }
+  }
+
+  function downloadBadge() {
+    const name = escapeHtml(learnerName.trim() || "Systems learner");
+    const date = new Intl.DateTimeFormat(undefined, { dateStyle: "long" }).format(new Date());
+    const scoreText = `${progress.lastScore ?? 0} / ${quizQuestions.length}`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#081f38"/><circle cx="1040" cy="110" r="170" fill="#67e8f9" opacity=".12"/><circle cx="180" cy="520" r="220" fill="#67e8f9" opacity=".08"/><text x="90" y="120" fill="#67e8f9" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="5">SYSTEMS LEARNING</text><text x="90" y="235" fill="#f8fafc" font-family="Arial,sans-serif" font-size="62" font-weight="700">Completion badge</text><text x="90" y="315" fill="#f8fafc" font-family="Arial,sans-serif" font-size="34">${name}</text><text x="90" y="385" fill="#94a3b8" font-family="Arial,sans-serif" font-size="24">Knowledge check passed · Score ${scoreText}</text><text x="90" y="470" fill="#67e8f9" font-family="Arial,sans-serif" font-size="22">${escapeHtml(date)}</text><text x="90" y="555" fill="#94a3b8" font-family="Arial,sans-serif" font-size="17">Local learning record · non-accredited</text><circle cx="1010" cy="430" r="82" fill="#67e8f9"/><path d="M970 430l25 25 55-65" fill="none" stroke="#081f38" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "systems-learning-completion-badge.svg";
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function printCertificate() {
+    const name = escapeHtml(learnerName.trim() || "Systems learner");
+    const date = new Intl.DateTimeFormat(undefined, { dateStyle: "long" }).format(new Date());
+    const scoreText = `${progress.lastScore ?? 0} / ${quizQuestions.length}`;
+    const certificate = window.open("", "_blank", "noopener,noreferrer,width=900,height=700");
+    if (!certificate) return;
+    certificate.document.write(
+      `<!doctype html><html><head><title>Systems Learning Completion</title><style>body{margin:0;background:#081f38;color:#f8fafc;font-family:Arial,sans-serif}.sheet{box-sizing:border-box;min-height:100vh;margin:0;padding:12vh 10vw;display:flex;flex-direction:column;justify-content:center;border:18px solid #67e8f9}.eyebrow{color:#67e8f9;text-transform:uppercase;letter-spacing:.22em;font-weight:700}.rule{width:110px;height:3px;background:#67e8f9;margin:28px 0}.name{font-size:clamp(42px,7vw,82px);margin:0 0 20px}.copy{font-size:22px;line-height:1.6;max-width:760px;color:#cbd5e1}.score{font-size:20px;color:#67e8f9;margin-top:28px}.fine{font-size:14px;color:#94a3b8;margin-top:40px}@media print{.sheet{min-height:90vh}}</style></head><body><main class="sheet"><div class="eyebrow">Systems Learning · Completion record</div><div class="rule"></div><h1 class="name">${name}</h1><p class="copy">has passed the Systems Learning knowledge check, demonstrating a practical understanding of defensive security, lawful software use, data protection, malware awareness, software systems development, and data representation.</p><p class="score">Score: ${scoreText} · Completed: ${escapeHtml(date)}</p><p class="fine">This is a local, non-accredited learning completion record. It is not a professional certification, qualification, or legal credential.</p></main></body></html>`,
+    );
+    certificate.document.close();
+    certificate.focus();
+    window.setTimeout(() => certificate.print(), 180);
   }
 
   return (
@@ -417,6 +470,73 @@ export function SystemsLearning() {
             )}
           </aside>
         </div>
+        {progress.lastScore !== null && progress.lastScore >= PASS_SCORE && (
+          <div
+            className="mt-5 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-5"
+            role="status"
+            aria-live="polite"
+          >
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div className="flex gap-3">
+                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-emerald-500 text-white">
+                  <Award className="size-5" />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-600 dark:text-emerald-300">
+                    Completion badge earned
+                  </p>
+                  <h4 className="mt-1 text-lg font-semibold">
+                    You passed with {progress.lastScore} / {quizQuestions.length}.
+                  </h4>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Add a display name, then download the badge or print the completion record.
+                  </p>
+                </div>
+              </div>
+              <div className="min-w-52">
+                <label className="text-xs font-medium" htmlFor="learner-name">
+                  Display name
+                </label>
+                <input
+                  id="learner-name"
+                  value={learnerName}
+                  onChange={(event) => updateLearnerName(event.target.value)}
+                  placeholder="Your name"
+                  className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
+                />
+              </div>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={downloadBadge}
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground"
+              >
+                <Download className="size-4" /> Download badge
+              </button>
+              <button
+                type="button"
+                onClick={printCertificate}
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold"
+              >
+                <Printer className="size-4" /> Print certificate
+              </button>
+            </div>
+            <p className="mt-3 text-xs text-muted-foreground">
+              This is a local, non-accredited learning completion record—not a professional
+              certification or qualification.
+            </p>
+          </div>
+        )}
+        {progress.lastScore !== null && progress.lastScore < PASS_SCORE && (
+          <p
+            className="mt-5 rounded-xl border border-border bg-muted/50 p-4 text-sm text-muted-foreground"
+            role="status"
+          >
+            You scored {progress.lastScore} / {quizQuestions.length}. Score {PASS_SCORE} or higher
+            to unlock the completion badge; review the explanations and try again.
+          </p>
+        )}
       </section>
 
       <div className="rounded-xl border border-border bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
