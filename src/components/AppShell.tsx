@@ -10,7 +10,6 @@ import {
   NotebookPen,
   Search,
   Star,
-  Sparkles,
   Trophy,
   Binary,
   X,
@@ -88,8 +87,12 @@ function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined })
   return (
     <div className="flex h-full flex-col gap-6 p-4">
       <Link to="/" onClick={onNavigate} className="flex items-center gap-3 px-2 py-1">
-        <span className="grid size-9 place-items-center rounded-xl bg-brand-gradient">
-          <Sparkles className="size-4 text-primary-foreground" />
+        <span className="grid size-9 place-items-center overflow-hidden rounded-xl bg-brand-gradient">
+          <img
+            src="/manus-storage/ezrome-ai-productivity-logo_96eaed8a.png"
+            alt="EZROME AI logo"
+            className="size-7 object-contain"
+          />
         </span>
         <span className="leading-tight">
           <span className="block font-display text-sm font-semibold text-sidebar-accent-foreground">
@@ -99,7 +102,23 @@ function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined })
         </span>
       </Link>
       <NavLinks onNavigate={onNavigate} />
-      <div className="mt-auto rounded-xl border border-sidebar-border/70 bg-sidebar-accent/40 p-3 text-xs leading-relaxed text-sidebar-foreground/75">
+      <div className="mt-auto overflow-hidden rounded-xl border border-sidebar-border/70 bg-sidebar-accent/40">
+        <img
+          src="/assets/ezrome-founder-portrait.webp"
+          alt="EZROME, founder of the AI productivity workspace"
+          className="h-28 w-full object-cover object-top"
+        />
+        <div className="p-3">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-sidebar-primary">
+            Founder signal
+          </p>
+          <p className="mt-1 font-semibold text-sidebar-accent-foreground">EZROME</p>
+          <p className="mt-1 text-xs leading-relaxed text-sidebar-foreground/70">
+            Human-led productivity, research, and learning in one workspace.
+          </p>
+        </div>
+      </div>
+      <div className="rounded-xl border border-sidebar-border/70 bg-sidebar-accent/40 p-3 text-xs leading-relaxed text-sidebar-foreground/75">
         <p className="mb-1 font-semibold text-sidebar-accent-foreground">Responsible AI</p>
         AI output can be inaccurate or incomplete. Review and edit every draft before sending,
         sharing or acting on it, and never paste confidential personal data.
@@ -119,8 +138,12 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <header className="sticky top-0 z-40 flex items-center justify-between border-b border-border bg-background/90 px-4 py-3 backdrop-blur lg:hidden">
         <span className="flex items-center gap-2 font-display text-sm font-semibold">
-          <span className="grid size-7 place-items-center rounded-lg bg-brand-gradient">
-            <Sparkles className="size-3.5 text-primary-foreground" />
+          <span className="grid size-7 place-items-center overflow-hidden rounded-lg bg-brand-gradient">
+            <img
+              src="/manus-storage/ezrome-ai-productivity-logo_96eaed8a.png"
+              alt="EZROME AI logo"
+              className="size-5 object-contain"
+            />
           </span>
           AI EZROME ARTIST BOT
         </span>
