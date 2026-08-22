@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { AppShell, NAV } from "@/components/AppShell";
+import { SystemsLearning } from "@/components/SystemsLearning";
 import { Disclaimer } from "@/components/ToolWorkspace";
 
 export const Route = createFileRoute("/")({
@@ -81,11 +82,14 @@ function Index() {
             <h3 className="mt-4 text-base font-semibold">{t.label}</h3>
             <p className="mt-1 text-sm text-muted-foreground">{t.desc}</p>
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary">
-              Open <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+              Open{" "}
+              <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
             </span>
           </Link>
         ))}
       </div>
+
+      <SystemsLearning />
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <div className="rounded-2xl border border-border bg-card p-5 shadow-panel">

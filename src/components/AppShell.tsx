@@ -12,6 +12,7 @@ import {
   Star,
   Sparkles,
   Trophy,
+  Binary,
   X,
 } from "lucide-react";
 import { useState, type ReactNode } from "react";
@@ -19,11 +20,37 @@ import { cn } from "@/lib/utils";
 
 export const NAV = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, desc: "Overview of your AI workspace" },
-  { to: "/portfolio", label: "Portfolio", icon: Briefcase, desc: "EZROME RATED OPINIONZ BOT showcase" },
+  {
+    to: "/portfolio",
+    label: "Portfolio",
+    icon: Briefcase,
+    desc: "EZROME RATED OPINIONZ BOT showcase",
+  },
   { to: "/email", label: "Email Generator", icon: Mail, desc: "Professional emails in any tone" },
-  { to: "/notes", label: "Notes Summarizer", icon: NotebookPen, desc: "Decisions, actions, deadlines" },
-  { to: "/planner", label: "Task Planner", icon: CalendarRange, desc: "Prioritised daily & weekly plans" },
-  { to: "/research", label: "Research Assistant", icon: Search, desc: "Briefings and recommendations" },
+  {
+    to: "/notes",
+    label: "Notes Summarizer",
+    icon: NotebookPen,
+    desc: "Decisions, actions, deadlines",
+  },
+  {
+    to: "/planner",
+    label: "Task Planner",
+    icon: CalendarRange,
+    desc: "Prioritised daily & weekly plans",
+  },
+  {
+    to: "/research",
+    label: "Research Assistant",
+    icon: Search,
+    desc: "Briefings and recommendations",
+  },
+  {
+    to: "/systems",
+    label: "Systems Learning",
+    icon: Binary,
+    desc: "Security, data, software systems & binary",
+  },
   { to: "/football", label: "Football News", icon: Trophy, desc: "FIFA, AFCON & global trends" },
   { to: "/coach", label: "Coach Academy", icon: GraduationCap, desc: "Team growth & sponsorships" },
   { to: "/player", label: "Player Lab", icon: Star, desc: "Analysis & career pathways" },
@@ -74,8 +101,8 @@ function SidebarInner({ onNavigate }: { onNavigate?: (() => void) | undefined })
       <NavLinks onNavigate={onNavigate} />
       <div className="mt-auto rounded-xl border border-sidebar-border/70 bg-sidebar-accent/40 p-3 text-xs leading-relaxed text-sidebar-foreground/75">
         <p className="mb-1 font-semibold text-sidebar-accent-foreground">Responsible AI</p>
-        AI output can be inaccurate or incomplete. Review and edit every draft before sending, sharing
-        or acting on it, and never paste confidential personal data.
+        AI output can be inaccurate or incomplete. Review and edit every draft before sending,
+        sharing or acting on it, and never paste confidential personal data.
       </div>
     </div>
   );

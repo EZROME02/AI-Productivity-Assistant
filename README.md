@@ -109,3 +109,25 @@ npm run dev
 - TypeScript
 - React
 - Tailwind CSS
+
+## Software Systems Learning
+
+The dashboard now includes a Systems Learning module covering security foundations, copyright and software licensing, software piracy avoidance, data protection, malware and computer-virus awareness, software systems development, data representation, and binary numbering. The binary lab converts decimal values from 0–255 into 8-bit binary. The content is defensive and educational; it does not provide malware creation, license bypass, credential theft, unauthorized access, or evasion instructions. Legal and regulatory decisions require qualified advice and the applicable authority.
+
+Official starting points used by the module include the [South African Information Regulator](https://inforegulator.org.za/), [WIPO software copyright guidance](https://www.wipo.int/en/web/copyright/activities/software), [WIPO copyright basics](https://www.wipo.int/en/web/copyright/protection), and [CISA malware, phishing, and ransomware guidance](https://www.cisa.gov/topics/cyber-threats-and-advisories/malware-phishing-and-ransomware).
+
+## Live worldwide web search
+
+The Research Assistant now has an optional server-side live-search panel. It uses Tavily for retrieval and the existing AI gateway for synthesis. Search results are shown as source links, and retrieved pages are treated as untrusted reference material rather than instructions. To enable it, configure `TAVILY_API_KEY` in the server environment. Keep both `TAVILY_API_KEY` and `LOVABLE_API_KEY` server-side; never put them in browser code or commit them to Git.
+
+Without `TAVILY_API_KEY`, pasted-text research continues to work and live search displays a configuration message instead of silently pretending that it has internet access.
+
+## Keep the app running while you build
+
+For a local production-like process, run:
+
+```bash
+npm run ops:run
+```
+
+This starts the development server with HMR on port 4173 and runs a health check, which is useful while you continue building other things. To check an already-running operational server, use `npm run ops:check`. For a normal interactive development session, use `npm run dev`. Production builds still run with `npm run build`; deploy the generated app through the project’s supported hosting path rather than relying on this local runner. A local process only remains available while its machine remains online. For independent 24/7 availability, use the project’s managed hosting or another always-on host and configure the same server-only secrets there.

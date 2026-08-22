@@ -8,6 +8,8 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
+    "ops:check": "node scripts/ops-check.mjs",
+    "ops:run": "npm run build && node scripts/ops-run.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

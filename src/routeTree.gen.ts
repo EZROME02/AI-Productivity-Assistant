@@ -19,6 +19,7 @@ import { Route as PlannerRouteImport } from './routes/planner'
 import { Route as PlayerRouteImport } from './routes/player'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as SystemsRouteImport } from './routes/systems'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +71,11 @@ const ResearchRoute = ResearchRouteImport.update({
   path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SystemsRoute = SystemsRouteImport.update({
+  id: '/systems',
+  path: '/systems',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/player': typeof PlayerRoute
   '/portfolio': typeof PortfolioRoute
   '/research': typeof ResearchRoute
+  '/systems': typeof SystemsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/player': typeof PlayerRoute
   '/portfolio': typeof PortfolioRoute
   '/research': typeof ResearchRoute
+  '/systems': typeof SystemsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/player': typeof PlayerRoute
   '/portfolio': typeof PortfolioRoute
   '/research': typeof ResearchRoute
+  '/systems': typeof SystemsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/player'
     | '/portfolio'
     | '/research'
+    | '/systems'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/player'
     | '/portfolio'
     | '/research'
+    | '/systems'
   id:
     | '__root__'
     | '/'
@@ -145,6 +156,7 @@ export interface FileRouteTypes {
     | '/player'
     | '/portfolio'
     | '/research'
+    | '/systems'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -158,6 +170,7 @@ export interface RootRouteChildren {
   PlayerRoute: typeof PlayerRoute
   PortfolioRoute: typeof PortfolioRoute
   ResearchRoute: typeof ResearchRoute
+  SystemsRoute: typeof SystemsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/systems': {
+      id: '/systems'
+      path: '/systems'
+      fullPath: '/systems'
+      preLoaderRoute: typeof SystemsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -246,6 +266,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlayerRoute: PlayerRoute,
   PortfolioRoute: PortfolioRoute,
   ResearchRoute: ResearchRoute,
+  SystemsRoute: SystemsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
