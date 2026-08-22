@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Binary } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { PageHeader, Disclaimer } from "@/components/ToolWorkspace";
+import { InternetWebQuiz } from "@/components/InternetWebQuiz";
 import { SystemsLearning } from "@/components/SystemsLearning";
 
 export const Route = createFileRoute("/systems")({
@@ -28,6 +29,7 @@ function SystemsPage() {
         description="Understand the foundations beneath digital tools and build with security, lawful software use, privacy, and operational discipline in mind."
       />
       <SystemsLearning />
+      <InternetWebQuiz />
       <Disclaimer />
     </AppShell>
   );
