@@ -131,3 +131,9 @@ npm run ops:run
 ```
 
 This starts the development server with HMR on port 4173 and runs a health check, which is useful while you continue building other things. To check an already-running operational server, use `npm run ops:check`. For a normal interactive development session, use `npm run dev`. Production builds still run with `npm run build`; deploy the generated app through the project’s supported hosting path rather than relying on this local runner. A local process only remains available while its machine remains online. For independent 24/7 availability, use the project’s managed hosting or another always-on host and configure the same server-only secrets there.
+
+## Systems Learning credentials and roadmap
+
+Users who score at least 4 out of 5 on the Systems Learning knowledge check receive a local, non-accredited completion state. The module provides an SVG badge download, a browser-generated PDF certificate download, and a print certificate option. Learner names and progress stay in browser-local storage; no credential data is sent to the server.
+
+The attached study brief also informs a future learning roadmap covering Internet and World Wide Web fundamentals, email productivity, and office productivity systems. These roadmap topics are explicitly not represented as completed by the current badge or certificate.

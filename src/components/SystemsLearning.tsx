@@ -1,5 +1,6 @@
 /* Software Systems learning module: practical, lawful, defensive, and source-linked. */
 import { useEffect, useMemo, useState } from "react";
+import { jsPDF } from "jspdf";
 import {
   Award,
   Binary,
@@ -8,6 +9,7 @@ import {
   CircleHelp,
   Database,
   Download,
+  FileDown,
   FileKey2,
   GitBranch,
   LockKeyhole,
@@ -139,6 +141,21 @@ const quizQuestions = [
   },
 ];
 
+const roadmap = [
+  {
+    title: "Internet & World Wide Web",
+    text: "Connectivity basics, client-server communication, TCP/IP, URLs, browsers, navigation, search engines, and saving web resources safely.",
+  },
+  {
+    title: "Email productivity",
+    text: "Messages, headers, attachments, contacts, folders, search, replies, BCC, delivery receipts, and safe account handling across common providers.",
+  },
+  {
+    title: "Office productivity systems",
+    text: "Word processing, spreadsheets, formulas, databases, accounting, payroll, design/CAD, and desktop publishing workflows.",
+  },
+];
+
 const PROGRESS_KEY = "systems-learning-progress-v1";
 const LEARNER_NAME_KEY = "systems-learning-learner-name-v1";
 const PASS_SCORE = 4;
@@ -253,6 +270,52 @@ export function SystemsLearning() {
     link.download = "systems-learning-completion-badge.svg";
     link.click();
     URL.revokeObjectURL(url);
+  }
+
+  function downloadPdfCertificate() {
+    const name = learnerName.trim() || "Systems learner";
+    const date = new Intl.DateTimeFormat(undefined, { dateStyle: "long" }).format(new Date());
+    const scoreText = `${progress.lastScore ?? 0} / ${quizQuestions.length}`;
+    const doc = new jsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
+    const width = doc.internal.pageSize.getWidth();
+    const height = doc.internal.pageSize.getHeight();
+    doc.setFillColor(8, 31, 56);
+    doc.rect(0, 0, width, height, "F");
+    doc.setDrawColor(103, 232, 249);
+    doc.setLineWidth(14);
+    doc.rect(14, 14, width - 28, height - 28);
+    doc.setTextColor(103, 232, 249);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(15);
+    doc.text("SYSTEMS LEARNING · COMPLETION RECORD", 82, 92);
+    doc.setTextColor(248, 250, 252);
+    doc.setFontSize(40);
+    doc.text("Completion certificate", 82, 170);
+    doc.setFontSize(25);
+    doc.text(name, 82, 235);
+    doc.setTextColor(203, 213, 225);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(16);
+    const body =
+      "has passed the Systems Learning knowledge check, demonstrating practical understanding of defensive security, lawful software use, data protection, malware awareness, software systems development, and data representation.";
+    doc.text(doc.splitTextToSize(body, 650), 82, 290, { lineHeightFactor: 1.5 });
+    doc.setTextColor(103, 232, 249);
+    doc.setFontSize(15);
+    doc.text(`Score: ${scoreText} · Completed: ${date}`, 82, 405);
+    doc.setTextColor(148, 163, 184);
+    doc.setFontSize(11);
+    doc.text(
+      "Local learning record · non-accredited · not a professional certification or qualification",
+      82,
+      470,
+    );
+    doc.setFillColor(103, 232, 249);
+    doc.circle(width - 125, height - 125, 55, "F");
+    doc.setDrawColor(8, 31, 56);
+    doc.setLineWidth(8);
+    doc.line(width - 154, height - 125, width - 133, height - 104);
+    doc.line(width - 133, height - 104, width - 92, height - 154);
+    doc.save("systems-learning-completion-certificate.pdf");
   }
 
   function printCertificate() {
@@ -516,6 +579,13 @@ export function SystemsLearning() {
               </button>
               <button
                 type="button"
+                onClick={downloadPdfCertificate}
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold"
+              >
+                <FileDown className="size-4" /> Download PDF certificate
+              </button>
+              <button
+                type="button"
                 onClick={printCertificate}
                 className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold"
               >
@@ -537,6 +607,30 @@ export function SystemsLearning() {
             to unlock the completion badge; review the explanations and try again.
           </p>
         )}
+      </section>
+
+      <section
+        className="rounded-2xl border border-border bg-card p-5 shadow-panel"
+        aria-labelledby="roadmap-heading"
+      >
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+          Attached study brief
+        </p>
+        <h3 id="roadmap-heading" className="mt-2 text-xl font-semibold">
+          Next learning roadmap
+        </h3>
+        <p className="mt-1 text-sm text-muted-foreground">
+          The attached content informs these future learning areas. They are roadmap topics and are
+          not claimed as completed by the current badge.
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {roadmap.map((item) => (
+            <article key={item.title} className="rounded-xl border border-border bg-muted/30 p-4">
+              <h4 className="font-semibold">{item.title}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <div className="rounded-xl border border-border bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
